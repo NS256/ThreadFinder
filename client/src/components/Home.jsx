@@ -6,6 +6,28 @@ export default function Home(){
     const [totalThreads, setTotalThreads] = useState(0); 
     const [totalThreadFamilies, setTotalThreadFamilies] = useState(0);
 
+    const searchPlaceHolders = [
+        "3/16 BSW",
+        "0.875",
+        "Cycle Thread",
+        "M10"
+    ]
+    const [searchPlaceholderIndex, setSearchPlaceHolderIndex] = useState(1);
+
+    //update the referenced placeholder index every 3 seconds
+    setTimeout(() => {
+        //if the chosen index is the last available one, reset to 0
+        if (searchPlaceholderIndex === (searchPlaceHolders.length - 1)) {
+            setSearchPlaceHolderIndex(0);
+        } else {
+            setSearchPlaceHolderIndex(searchPlaceholderIndex + 1);
+        }
+        
+    },3000);
+
+
+
+
     useEffect(() => {
         async function fetchAndSetCounts() {
             try {
@@ -36,7 +58,7 @@ export default function Home(){
             <div className='search-container'>
                 <form className='search-form'>
                     <div>
-                        <input type='text' id='search-term' className='search-form-element' />
+                        <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} />
                     </div>
                     <div>
                         <button type='submit' className='search-form-element' >Search</button>

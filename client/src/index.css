@@ -29,6 +29,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-image: linear-gradient(to bottom, #330033, #000B43);
+  color: #ffffff;
 }
 
 h1 {

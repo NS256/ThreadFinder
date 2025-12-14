@@ -8,12 +8,15 @@ function App() {
 
   return (
     <>
-      <Router> 
+      <main>
+        <Router> 
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/advanced" element={<AdvancedSearch />} />
         </Routes>
       </Router>
+      </main>
+      
 
     </>
   )

@@ -30,7 +30,7 @@ export default function Home(){
 
 
     useEffect(() => {
-        async () => {
+        (async () => {
             try {
                 const res = await fetch('/api/1/threads/count');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -44,7 +44,7 @@ export default function Home(){
             } catch (err) {
                 console.error('Failed to load counts', err);
             }
-        }
+        })();
 
         // async function fetchAndSetCounts() {
         //     try {

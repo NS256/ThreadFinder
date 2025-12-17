@@ -1,7 +1,11 @@
 const express = require("express");
+const cors = require('cors');
 const path = require("path");
 const app = express();
 const threadRouter = require("./routes/threadRouter");
+
+//allow requests via CORS
+app.use(cors());
 
 // Parse incoming JSON request bodies
 app.use(express.json());

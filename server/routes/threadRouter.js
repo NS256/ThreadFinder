@@ -9,6 +9,8 @@ router.route("/all").get(threadController.getAllThreads);
 
 router.route("/f/all").get(threadController.getAllThreadFamily);
 
+router.route("/count").get(threadController.getThreadCounts);
+
 module.exports = router;
 // exports.getThreads = (req,res) => {
 //     console.log("All threads requested");

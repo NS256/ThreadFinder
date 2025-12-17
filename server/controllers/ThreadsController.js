@@ -89,3 +89,15 @@ exports.getAllThreadFamily = async (req,res,next) => {
 
     });
 };
+
+exports.getThreadCounts = async (req,res,next) => {
+    const totalThreads = await Thread.countDocuments();
+    const totalThreadFamilies = await Family.countDocuments();
+
+    return res.status(200).json({
+        status: "success",
+        counts: {
+            totalThreads, totalThreadFamilies
+        },
+    })
+}

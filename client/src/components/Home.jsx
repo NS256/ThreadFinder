@@ -45,32 +45,15 @@ export default function Home(){
                 console.error('Failed to load counts', err);
             }
         })();
-
-        // async function fetchAndSetCounts() {
-        //     try {
-        //         const res = await fetch('/api/1/threads/count');
-        //         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        //         const data = await res.json();
-        //         if (data.status === 'success') {
-        //             setTotalThreads(data.counts.totalThreads || 0);
-        //             setTotalThreadFamilies(data.counts.totalThreadFamilies || 0);
-        //         } else {
-        //             console.warn('Counts API returned non-success', data);
-        //         }
-        //     } catch (err) {
-        //         console.error('Failed to load counts', err);
-        //     }
-        // }
-        // fetchAndSetCounts();
     }, []);
 
     return (
-        <div>
-            <div className='header-container'>
+        <div id='homepage'>
+            <div className='title-container'>
                 <h1>ThreadFinder</h1>
             </div>
             <div className='description-container'>
-                <p>Search through { (totalThreads > 0) ? totalThreads: "many"} different threads and { (totalThreadFamilies > 0) ? totalThreadFamilies: ""} thread types to find the right one for your project.</p>
+                <p>Search { (totalThreads > 0) ? totalThreads: "many"} threads and { (totalThreadFamilies > 0) ? totalThreadFamilies: ""} thread types to find the right one for your project.</p>
             </div>
             <div className='search-container'>
                 <form className='search-form' method='get' action="/search">
@@ -83,6 +66,11 @@ export default function Home(){
                     <div>
                         <Link to="/advanced">
                             <button type='button' className='search-form-element'>Advanced search</button>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to="/all">
+                            <button type='button' className='search-form-element secondary'>View all</button>
                         </Link>
                     </div>
                 </form>

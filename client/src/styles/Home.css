@@ -1,7 +1,26 @@
+#homepage {
+    align-content: center;
+    text-align: center;
+    padding-top: 10vh
+}
+
+.title-container {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.description-container {
+    font-size: var(--text-size);
+    margin-top: 30px;
+    margin-bottom: 40px;
+    
+}
+
 .search-form {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    font-size: var(--text-size) !important;
 }
 .search-form div {
     margin: 10px;
@@ -12,22 +31,34 @@
     border-collapse: collapse;
     border-style: solid;
     border-width: 1px;
-    height: 25px;
+    height: var(--text-size);
     padding: 20px;
     margin: 0px;
     width: 100%;
 }
 
+.search-form input,button {
+    height: 100px;
+}
+
 .search-form input {
     box-sizing: border-box;
+    font-size: var(--text-size);
 }
 
 .search-form button {
-    background-color: #BD00AA;
+    background-color: var(--primary-button);
 }
 
 .search-form button:hover {
-    background-color: #7E0072;
+    background-color: var(--primary-button-hover);
     box-shadow: inset;
 }
 
+button.secondary {
+    background-color: var(--secondary-button);
+}
+
+button.secondary:hover {
+    background-color: var(--secondary-button-hover);
+}

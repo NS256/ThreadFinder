@@ -17,7 +17,9 @@ function App() {
       </Router>
       </main>
       
-
+    <footer>
+      <p>&copy; Nathan Smith</p>
+    </footer>
     </>
   )
 }

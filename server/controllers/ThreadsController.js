@@ -3,12 +3,30 @@ const Thread = require("../models/threadModel");
 const Family = require("../models/threadFamilyModel");
 
 exports.getAllThreads = async (req,res,next) => {
-    const threads = await Thread.find();
+    let threads = await Thread.find().lean();
+    const threadFamilies = await Family.find();
+
+    // console.log(threads);
+
+    for (let i = 0; i < threads.length; i++){
+        const threadFamilyID = threads[i].familyID;
+        let family = threadFamilies.find((el) => el.id === threadFamilyID);
+
+        if (!family) {
+            family = {};
+            threads[i].familyID = null;
+        }
+
+        threads[i].family = family;
+        
+    }
 
     res.status(200).json({
         status: "success",
         results: threads.length,
         data: threads,
+        types: threadFamilies,
+
     }); 
 };
 

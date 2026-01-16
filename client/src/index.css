@@ -47,8 +47,8 @@ a:hover {
 } */
 
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100vwd;
+  height: 100vhd;
   margin: 0;
   /* display: flex; */
   place-items: center;

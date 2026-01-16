@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/Home.css';
+import UnitsToggle from './UnitsToggle';
 
 export default function Home(){
     const [totalThreads, setTotalThreads] = useState(0); 
     const [totalThreadFamilies, setTotalThreadFamilies] = useState(0);
+    // const [units, setUnits] = useState('inch');
 
     const searchPlaceHolders = [
         "3/16 BSW",
@@ -58,8 +60,15 @@ export default function Home(){
             <div className='search-container'>
                 <form className='search-form' method='get' action="/search">
                     <div>
-                        <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} />
+                        <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} name="q" />
                     </div>
+                    {/* <div>
+                        <input type="radio" name='unit' id='imperial' value='Imperial'/>
+                        <label for='imperial' className='radio-label'>Imperial</label>
+                        <input type="radio" name='unit' id='metric' value='Metric'/>
+                        <label for='metric' className='radio-label'>Metric</label>
+                    </div> */}
+                    
                     <div>
                         <button type='submit' className='search-form-element' >Search</button>
                     </div>
@@ -73,6 +82,7 @@ export default function Home(){
                             <button type='button' className='search-form-element secondary'>View all</button>
                         </Link>
                     </div>
+                    <UnitsToggle />
                 </form>
             </div>
         </div>

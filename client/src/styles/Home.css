@@ -37,9 +37,9 @@
     width: 100%;
 }
 
-.search-form input,button {
+/* .search-form input,button {
     height: 100px;
-}
+} */
 
 .search-form input {
     box-sizing: border-box;

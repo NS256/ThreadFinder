@@ -47,8 +47,8 @@ a:hover {
 } */
 
 body {
-  width: 100vwd;
-  height: 100vhd;
+  width: 100dvw;
+  height: 100dvh;
   margin: 0;
   /* display: flex; */
   place-items: center;
@@ -56,6 +56,11 @@ body {
   min-height: 100dvh;
   background-image: linear-gradient(to bottom, #330033, #000B43);
   color: #ffffff;
+  display: block;
+}
+
+.page {
+  padding-top: 10vh;
 }
 
 /*Make all divs 100% of the size of their parent unless otherwise stated*/

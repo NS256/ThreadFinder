@@ -5,22 +5,24 @@ import {UnitContextProvider} from './contexts/UnitContext.jsx';
 import Home from './components/Home';
 import AdvancedSearch from './components/AdvancedSearch';
 import ThreadResults from './components/ThreadResults';
+import UnitsToggle from './components/UnitsToggle';
 
 function App() {
 
   return (
     <>
       <UnitContextProvider>
-      <main>
-        <Router> 
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/advanced" element={<AdvancedSearch />} />
-          <Route path="/all" element={<ThreadResults endpoint="google.com"/>} />
-          <Route path="/search" element={<ThreadResults endpoint="google.com"/>} />
-        </Routes>
-      </Router>
-      </main>
+        <UnitsToggle />
+        <main>
+          <Router> 
+            <Routes>
+              <Route path="/" element={<Home />}/>
+              <Route path="/advanced" element={<AdvancedSearch />} />
+              <Route path="/all" element={<ThreadResults endpoint="google.com"/>} />
+              <Route path="/search" element={<ThreadResults endpoint="google.com"/>} />
+            </Routes>
+          </Router>
+        </main>
       </UnitContextProvider>
       
     <footer>

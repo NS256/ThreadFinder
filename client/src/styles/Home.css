@@ -1,13 +1,10 @@
 #homepage {
     align-content: center;
     text-align: center;
-    padding-top: 10vh
+    
 }
 
-.title-container {
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
+
 
 .description-container {
     font-size: var(--text-size);

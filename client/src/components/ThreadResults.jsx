@@ -8,18 +8,24 @@ import {useSearchParams} from 'react-router';
 
 export default function ThreadResults({endpoint}) {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
 
 
 
     // searchParams.keys().forEach((param) => console.log(param));
 
-    console.log(searchParams.keys().contains("q"));
+    // console.log(searchParams.keys().contains("q"));
 
-    return (<div className='results-page'>
-        <div className='results-container container'>
-            {endpoint}
+    return (
+        <div className='results-page page' id='results-page'>
+            <div className='title-container'>
+                <h1>Results</h1>
+            </div>
+            <div className='results-container container'>
+                
+                
+            </div>
+
         </div>
-
-    </div>);
+    );
 }

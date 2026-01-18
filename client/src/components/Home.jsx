@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/Home.css';
-import UnitsToggle from './UnitsToggle';
 
 export default function Home(){
     const [totalThreads, setTotalThreads] = useState(0); 
@@ -50,7 +49,7 @@ export default function Home(){
     }, []);
 
     return (
-        <div id='homepage'>
+        <div id='homepage' className='homepage page'>
             <div className='title-container'>
                 <h1>ThreadFinder</h1>
             </div>
@@ -62,12 +61,6 @@ export default function Home(){
                     <div>
                         <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} name="q" />
                     </div>
-                    {/* <div>
-                        <input type="radio" name='unit' id='imperial' value='Imperial'/>
-                        <label for='imperial' className='radio-label'>Imperial</label>
-                        <input type="radio" name='unit' id='metric' value='Metric'/>
-                        <label for='metric' className='radio-label'>Metric</label>
-                    </div> */}
                     
                     <div>
                         <button type='submit' className='search-form-element' >Search</button>
@@ -82,7 +75,7 @@ export default function Home(){
                             <button type='button' className='search-form-element secondary'>View all</button>
                         </Link>
                     </div>
-                    <UnitsToggle />
+                    
                 </form>
             </div>
         </div>

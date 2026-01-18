@@ -1,5 +1,7 @@
 import React, {useTransition, useEffect} from 'react';
 import {useSearchParams} from 'react-router';
+import { Loading } from './DynamicSymbols';
+import '../styles/ThreadResults.css';
 
 /**
  * ThreadResults component has a specified endpoint to call passed in at the point it's rendered
@@ -8,24 +10,25 @@ import {useSearchParams} from 'react-router';
 
 export default function ThreadResults({endpoint}) {
 
-    // const [searchParams, setSearchParams] = useSearchParams();
+    const [ isPending, startFetch ] = useTransition();
 
-
-
-    // searchParams.keys().forEach((param) => console.log(param));
-
-    // console.log(searchParams.keys().contains("q"));
+    useEffect(() => {
+        startFetch(async () => {
+            const threadResponse = await fetch(endpoint);
+            const threads = await threadResponse.json();
+            console.log(threads);
+        });
+    }, [endpoint, startFetch]);
 
     return (
         <div className='results-page page' id='results-page'>
             <div className='title-container'>
-                <h1>Results</h1>
+                <h2 className='results-title'>Results</h2>
             </div>
             <div className='results-container container'>
-                
-                
+                { isPending && <Loading id="results-loading"/> }
+                { !isPending && <p>Results found!</p>}
             </div>
-
         </div>
     );
 }

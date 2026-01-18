@@ -1,0 +1,27 @@
+.title-container {
+    margin-bottom: 10px;
+}
+
+.results-title {
+    margin: 0px;
+}
+
+.results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: var(--border-color);
+    
+    border-style: solid;
+    background-color: #0000003c
+    ;
+}
+
+.results-loading {
+    margin-left: auto;
+    margin-right: auto;
+}

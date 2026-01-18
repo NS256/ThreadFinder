@@ -18,7 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />}/>
               <Route path="/advanced" element={<AdvancedSearch />} />
-              <Route path="/all" element={<ThreadResults endpoint="google.com"/>} />
+              <Route path="/all" element={<ThreadResults endpoint="/api/1/threads/all"/>} />
               <Route path="/search" element={<ThreadResults endpoint="google.com"/>} />
             </Routes>
           </Router>

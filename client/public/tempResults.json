@@ -1,0 +1,132 @@
+{
+    "status": "success",
+    "results": 3,
+    "data": [
+        {
+            "_id": "693421235465ead38380a325",
+            "name": "Another Thread",
+            "outerDiameter": 0.25,
+            "familyID": null,
+            "createdAt": "2025-12-06T12:27:12.677Z",
+            "__v": 0,
+            "family": {}
+        },
+        {
+            "_id": "6934693611e42202ac307c66",
+            "name": "1/16",
+            "outerDiameter": 1.59,
+            "innerDiameter": 1.05,
+            "clearance": 1.99,
+            "tap": 1.15,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:34:42.922Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        },
+        {
+            "_id": "69346b647e9ac4138feeffc3",
+            "name": "3/32",
+            "outerDiameter": 2.38,
+            "innerDiameter": 1.7,
+            "clearance": 2.67,
+            "tap": 1.9,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:40:37.251Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        },
+        {
+            "_id": "69346b647e9ac4138feeffc3",
+            "name": "3/32",
+            "outerDiameter": 2.38,
+            "innerDiameter": 1.7,
+            "clearance": 2.67,
+            "tap": 1.9,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:40:37.251Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        },
+        {
+            "_id": "69346b647e9ac4138feeffc3",
+            "name": "3/32",
+            "outerDiameter": 2.38,
+            "innerDiameter": 1.7,
+            "clearance": 2.67,
+            "tap": 1.9,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:40:37.251Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        },
+        {
+            "_id": "69346b647e9ac4138feeffc3",
+            "name": "3/32",
+            "outerDiameter": 2.38,
+            "innerDiameter": 1.7,
+            "clearance": 2.67,
+            "tap": 1.9,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:40:37.251Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        },
+        {
+            "_id": "69346b647e9ac4138feeffc3",
+            "name": "3/32",
+            "outerDiameter": 2.38,
+            "innerDiameter": 1.7,
+            "clearance": 2.67,
+            "tap": 1.9,
+            "familyID": "693469075c52e6cd8de2f6be",
+            "createdAt": "2025-12-06T17:40:37.251Z",
+            "__v": 0,
+            "family": {
+                "_id": "693469075c52e6cd8de2f6be",
+                "name": "BSW",
+                "fullName": "British Standard Whitworth",
+                "createdAt": "2025-12-06T17:33:57.168Z",
+                "__v": 0
+            }
+        }
+    ],
+    "types": [
+        {
+            "_id": "693469075c52e6cd8de2f6be",
+            "name": "BSW",
+            "fullName": "British Standard Whitworth",
+            "createdAt": "2025-12-06T17:33:57.168Z",
+            "__v": 0
+        }
+    ]
+}

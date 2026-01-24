@@ -1,6 +1,7 @@
-import React, {useTransition, useEffect} from 'react';
-import {useSearchParams} from 'react-router';
+import React, {useTransition, useEffect, useState} from 'react';
+// import {useSearchParams} from 'react-router';
 import { Loading } from './DynamicSymbols';
+import ResultsCardView from './ResultsCardView';
 import '../styles/ThreadResults.css';
 
 /**
@@ -11,12 +12,13 @@ import '../styles/ThreadResults.css';
 export default function ThreadResults({endpoint}) {
 
     const [ isPending, startFetch ] = useTransition();
+    const [ threads, setThreads ] = useState({});
 
     useEffect(() => {
         startFetch(async () => {
             const threadResponse = await fetch(endpoint);
             const threads = await threadResponse.json();
-            console.log(threads);
+            setThreads(threads);
         });
     }, [endpoint, startFetch]);
 
@@ -27,7 +29,7 @@ export default function ThreadResults({endpoint}) {
             </div>
             <div className='results-container container'>
                 { isPending && <Loading id="results-loading"/> }
-                { !isPending && <p>Results found!</p>}
+                { !isPending && <ResultsCardView results={threads} />}
             </div>
         </div>
     );

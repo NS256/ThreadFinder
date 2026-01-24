@@ -1,0 +1,12 @@
+.card {
+    width: 100%;
+    box-sizing: border-box;
+    border-color: #ffffffbc;
+    border-width: 2px;
+    border-radius: 10px;
+    border-style: solid;
+    /* margin-left: auto; */
+    /* margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 20px; */
+}

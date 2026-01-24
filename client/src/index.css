@@ -41,7 +41,7 @@
 
 body {
   width: 100dvw;
-  height: 100dvh;
+  /* height: 100dvh; */
   margin: 0;
   /* display: flex; */
   place-items: center;

@@ -6,6 +6,7 @@ import '../styles/Home.css';
 export default function Home(){
     const [totalThreads, setTotalThreads] = useState(0); 
     const [totalThreadFamilies, setTotalThreadFamilies] = useState(0);
+    // const [units, setUnits] = useState('inch');
 
     const searchPlaceHolders = [
         "3/16 BSW",
@@ -48,7 +49,7 @@ export default function Home(){
     }, []);
 
     return (
-        <div id='homepage'>
+        <div id='homepage' className='homepage page'>
             <div className='title-container'>
                 <h1>ThreadFinder</h1>
             </div>
@@ -58,8 +59,9 @@ export default function Home(){
             <div className='search-container'>
                 <form className='search-form' method='get' action="/search">
                     <div>
-                        <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} />
+                        <input type='text' id='search-term' className='search-form-element' placeholder={searchPlaceHolders[searchPlaceholderIndex]} name="q" />
                     </div>
+                    
                     <div>
                         <button type='submit' className='search-form-element' >Search</button>
                     </div>
@@ -73,6 +75,7 @@ export default function Home(){
                             <button type='button' className='search-form-element secondary'>View all</button>
                         </Link>
                     </div>
+                    
                 </form>
             </div>
         </div>

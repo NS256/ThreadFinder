@@ -1,13 +1,10 @@
 #homepage {
     align-content: center;
     text-align: center;
-    padding-top: 10vh
+    
 }
 
-.title-container {
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
+
 
 .description-container {
     font-size: var(--text-size);
@@ -37,9 +34,9 @@
     width: 100%;
 }
 
-.search-form input,button {
+/* .search-form input,button {
     height: 100px;
-}
+} */
 
 .search-form input {
     box-sizing: border-box;

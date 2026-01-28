@@ -86,9 +86,28 @@ exports.getThread = async (req,res,next) => {
 
     
 
-    const thread = await Thread.find(queryObj);
+    let thread = await Thread.find(queryObj).lean();
+    const threadFamilies = await Family.find();
 
-    
+
+    //GET THE THREAD FAMILY FOR ALL THREADS
+    for (let i = 0; i < thread.length; i++){
+        const threadFamilyID = thread[i].familyID;
+        let family = threadFamilies.find((el) => el.id === threadFamilyID);
+
+        console.log(family);
+
+        if (!family) {
+            family = {};
+            thread[i].familyID = null;
+            console.log("no family found");
+        }
+
+        thread[i].family = family;
+        
+    }
+
+    console.log(thread);
 
     return res.status(200).json({
         status: "success",

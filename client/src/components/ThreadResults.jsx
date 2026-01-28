@@ -1,5 +1,5 @@
 import React, {useTransition, useEffect, useState} from 'react';
-// import {useSearchParams} from 'react-router';
+import {useSearchParams} from 'react-router';
 import { Loading } from './DynamicSymbols';
 import ResultsCardView from './ResultsCardView';
 import '../styles/ThreadResults.css';
@@ -11,16 +11,20 @@ import '../styles/ThreadResults.css';
 
 export default function ThreadResults({endpoint}) {
 
+    let [searchParams, setSearchParams] = useSearchParams();
+
     const [ isPending, startFetch ] = useTransition();
     const [ threads, setThreads ] = useState({});
 
     useEffect(() => {
+        const queryParams = searchParams.toString();
         startFetch(async () => {
-            const threadResponse = await fetch(endpoint);
+            const threadResponse = await fetch(`${endpoint}${(queryParams.length > 0)? ("?" + queryParams) : "" }`);
             const threads = await threadResponse.json();
+            console.log(threads);
             setThreads(threads);
         });
-    }, [endpoint, startFetch]);
+    }, [endpoint, searchParams, startFetch]);
 
     return (
         <div className='results-page page' id='results-page'>

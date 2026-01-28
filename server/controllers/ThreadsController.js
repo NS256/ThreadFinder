@@ -30,8 +30,84 @@ exports.getAllThreads = async (req,res,next) => {
     }); 
 };
 
+/** Will get all threads that match the search parameter, not just a single thread
+ * Later can be built out to also accept the search parameters included in advanced search, for now will only take the individual search parameter
+ */
 exports.getThread = async (req,res,next) => {
-    const thread = await Thread.find(req.body);
+    //get the query params
+    const query = req.query.q;
+
+    let queryObj = {};
+    
+
+    if (Object.keys(req.query).length > 0) {
+        
+
+        //Nest all other query functions here to start to filter output
+        if (typeof query === 'string' && query.toLowerCase().includes("tpi")) {
+            let tpiQuery = query.toLowerCase().replace(/\D/g, "");
+            console.log(tpiQuery);
+
+            queryObj.tpi = tpiQuery;
+
+            console.log("user wants to search by tpi");
+        } else if (typeof query === 'number') {
+            //if the type is 
+            queryObj[$or] = [
+                { 'tpi': query },
+                { $and: 
+                    [
+                        { 'outerDiameter': query * 0.9 },
+                        { 'outerDiameter': query * 1.1 },
+                    ], 
+                },
+                { $and: 
+                    [
+                        { 'innerDiameter': query * 0.9 },
+                        { 'innerDiameter': query * 1.1 },
+                    ], 
+                },
+                { $and: 
+                    [
+                        { 'clearance': query * 0.9 },
+                        { 'clearance': query * 1.1 },
+                    ], 
+                },
+                { $and: 
+                    [
+                        { 'tap': query * 0.9 },
+                        { 'tap': query * 1.1 },
+                    ], 
+                },
+            ]
+        }
+    }
+
+
+    
+
+    let thread = await Thread.find(queryObj).lean();
+    const threadFamilies = await Family.find();
+
+
+    //GET THE THREAD FAMILY FOR ALL THREADS
+    for (let i = 0; i < thread.length; i++){
+        const threadFamilyID = thread[i].familyID;
+        let family = threadFamilies.find((el) => el.id === threadFamilyID);
+
+        console.log(family);
+
+        if (!family) {
+            family = {};
+            thread[i].familyID = null;
+            console.log("no family found");
+        }
+
+        thread[i].family = family;
+        
+    }
+
+    console.log(thread);
 
     return res.status(200).json({
         status: "success",

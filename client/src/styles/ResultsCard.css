@@ -5,8 +5,39 @@
     border-width: 2px;
     border-radius: 10px;
     border-style: solid;
+    padding: 20px;
     /* margin-left: auto; */
     /* margin-right: auto;
     margin-top: 0px;
     margin-bottom: 20px; */
+}
+
+.thread-family-subtitle {
+    color: #717171;
+}
+
+.card .title-container {
+    margin: 0px;
+}
+
+.card h3,h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.thread-details {
+    /* width: max(500px, 100%); */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    padding-bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.measurement-value {
+    text-align: right;
 }

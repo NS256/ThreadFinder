@@ -28,8 +28,14 @@
 
   --heading-size: max(10vw, 40px);
   --subheading-size: max(6vw, 32px);
+  --h3-size: max(4vw, 24px);
+  --h4-size: max(3vw, 16px);
+  --h5-size: max(2vw, 160px);
   --text-size: max(2vw,18px);
   --subtext-size: max(1.5em,12px);
+
+  --background-gradient: linear-gradient(to bottom, #330033, #000B43);
+  --row-gradient: linear-gradient(to bottom, #0d004300, #00004822, #0d004300);
 }
 
 .root {
@@ -40,14 +46,14 @@
 }
 
 body {
-  width: 100dvw;
+  width: 100%;
   /* height: 100dvh; */
   margin: 0;
   /* display: flex; */
   place-items: center;
   min-width: 320px;
   min-height: 100dvh;
-  background-image: linear-gradient(to bottom, #330033, #000B43);
+  background-image: var(--background-gradient);
   color: #ffffff;
   display: block;
 }
@@ -91,6 +97,18 @@ h1 {
 
 h2 {
   font-size: var(--subheading-size);
+}
+
+h3 {
+  font-size: var(--h3-size);
+}
+
+h4 {
+  font-size: var(--h4-size);
+}
+
+h5 {
+  font-size: var(--h5-size);
 }
 
 input {

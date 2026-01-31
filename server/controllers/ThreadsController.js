@@ -37,6 +37,9 @@ exports.getThread = async (req,res,next) => {
     //get the query params
     const query = req.query.q;
 
+    //all thread families must be got early on to allow for filtering if typeof is a string
+    const threadFamilies = await Family.find();
+
     let queryObj = {};
     
 
@@ -46,11 +49,28 @@ exports.getThread = async (req,res,next) => {
         //Nest all other query functions here to start to filter output
         if (typeof query === 'string' && query.toLowerCase().includes("tpi")) {
             let tpiQuery = query.toLowerCase().replace(/\D/g, "");
-            console.log(tpiQuery);
 
             queryObj.tpi = tpiQuery;
+        } else if (typeof query === 'string') {
+            //correct any spaces in the query
+            let correctedQuery = query.replaceAll('%20',' ').replaceAll('+',' ');
 
-            console.log("user wants to search by tpi");
+            console.log(correctedQuery);
+            
+
+            const filteredFamilies = threadFamilies.filter((el) => (
+                el.name.toLowerCase().includes(correctedQuery.toLowerCase()) || el.fullName.toLowerCase().includes(correctedQuery.toLowerCase())
+            ));
+
+            queryObj.$or = [{ 'name': { $regex: '.*' + correctedQuery + '.*', $options: 'i' }}];
+
+            filteredFamilies.forEach(el => {
+                queryObj.$or.push({ 'familyID': el._id });
+            });
+
+            console.log(queryObj);
+
+
         } else if (typeof query === 'number') {
             //if the type is 
             queryObj[$or] = [
@@ -87,7 +107,7 @@ exports.getThread = async (req,res,next) => {
     
 
     let thread = await Thread.find(queryObj).lean();
-    const threadFamilies = await Family.find();
+    
 
 
     //GET THE THREAD FAMILY FOR ALL THREADS
@@ -95,19 +115,14 @@ exports.getThread = async (req,res,next) => {
         const threadFamilyID = thread[i].familyID;
         let family = threadFamilies.find((el) => el.id === threadFamilyID);
 
-        console.log(family);
-
         if (!family) {
             family = {};
             thread[i].familyID = null;
-            console.log("no family found");
         }
 
         thread[i].family = family;
         
     }
-
-    console.log(thread);
 
     return res.status(200).json({
         status: "success",

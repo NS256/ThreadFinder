@@ -13,7 +13,7 @@ export default function ResultCard({thread}) {
             <div className='details thread-details details-container card-inner'>
                 <MeasurementRow title="Outer Diameter" measurement={thread.outerDiameter} />
                 <MeasurementRow title="Inner Diameter" measurement={thread.innerDiameter} />
-                <MeasurementRow title="TPI" measurement={thread.tpi} />
+                <MeasurementRow title="TPI" measurement={thread.tpi} convertValues={false}/>
                 <MeasurementRow title="Tap Drill Diameter" measurement={thread.tap} />
                 <MeasurementRow title="Clearance Drill Diameter" measurement={thread.clearance} />
             </div>
@@ -21,9 +21,11 @@ export default function ResultCard({thread}) {
     )
 }
 
-function MeasurementRow({title, measurement}) {
+function MeasurementRow({title, measurement, convertValues=true}) {
     //unit is boolean - true for metric, false for imperial
     const {unit} = useUnit();
+
+    console.log(`${title}: convertValues=${convertValues}, unit=${unit}, measurement=${measurement}`);
 
     if (!measurement || isNaN(measurement)) {
         return null;
@@ -36,7 +38,7 @@ function MeasurementRow({title, measurement}) {
             </div>
             <div className='measurement-value-container measurement-container'>
                 <p className='measurement-value'>
-                    {(unit) ? measurement : (measurement / 25.4)}
+                    {convertValues ? (unit ? measurement : (measurement / 25.4).toFixed(4)) : measurement}
                 </p>
             </div>
         </div>

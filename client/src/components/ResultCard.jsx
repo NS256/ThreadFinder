@@ -11,21 +11,23 @@ export default function ResultCard({thread}) {
                 {thread.family.fullName && <h4 className='thread-family-subtitle'>{thread.family.fullName}</h4>}
             </div>
             <div className='details thread-details details-container card-inner'>
-                <MeasurementRow title="Outer Diameter" measurement={thread.outerDiameter} />
-                <MeasurementRow title="Inner Diameter" measurement={thread.innerDiameter} />
-                <MeasurementRow title="TPI" measurement={thread.tpi} convertValues={false}/>
-                <MeasurementRow title="Tap Drill Diameter" measurement={thread.tap} />
-                <MeasurementRow title="Clearance Drill Diameter" measurement={thread.clearance} />
+                <MeasurementRow title="Outer Diameter" measurement={thread.outerDiameter} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow title="Inner Diameter" measurement={thread.innerDiameter} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow title="TPI" measurement={thread.tpi} convertValues={false} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow title="Tap Drill Diameter" measurement={thread.tap} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow title="Clearance Drill Diameter" measurement={thread.clearance} defaultUnit={thread.family.defaultUnit}/>
             </div>
         </div>
     )
 }
 
-function MeasurementRow({title, measurement, convertValues=true}) {
+function MeasurementRow({title, measurement, defaultUnit, convertValues=true}) {
     //unit is boolean - true for metric, false for imperial
+
+    // Commenting out unit to test
     const {unit} = useUnit();
 
-    console.log(`${title}: convertValues=${convertValues}, unit=${unit}, measurement=${measurement}`);
+    // console.log(`${title}: convertValues=${convertValues}, unit=${unit}, measurement=${measurement}`);
 
     if (!measurement || isNaN(measurement)) {
         return null;
@@ -38,7 +40,13 @@ function MeasurementRow({title, measurement, convertValues=true}) {
             </div>
             <div className='measurement-value-container measurement-container'>
                 <p className='measurement-value'>
-                    {convertValues ? (unit ? measurement : (measurement / 25.4).toFixed(4)) : measurement}
+                    {/* Commenting out original flow to test new options */}
+                    {/* {convertValues ? (unit ? measurement : (measurement / 25.4).toFixed(4)) : measurement} */}
+
+                    {/* Trialling displaying default unit symbols instead */}
+                    {( unit === defaultUnit || !convertValues ) ? measurement : measurement * (unit === 'mm' ? 25.4 : 0.0393700787 )}
+                    {`${convertValues ? (defaultUnit === 'inch' ? '"' : 'mm') : ''}`}
+
                 </p>
             </div>
         </div>

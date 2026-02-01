@@ -15,7 +15,7 @@ export default function UnitsToggle() {
                 <img src='/24-tape_measure.svg' alt='Tape measure icon.' className='icon'/>
             </div>
             <div className='unit container unit-container' onClick={handleClick}>
-                <span className='unit-name'>{(unit) ? 'mm' : 'inch'}</span>
+                <span className='unit-name'>{unit}</span>
             </div>
         </div>
     );

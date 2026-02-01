@@ -44,8 +44,8 @@ function MeasurementRow({title, measurement, defaultUnit, convertValues=true}) {
                     {/* {convertValues ? (unit ? measurement : (measurement / 25.4).toFixed(4)) : measurement} */}
 
                     {/* Trialling displaying default unit symbols instead */}
-                    {( unit === defaultUnit || !convertValues ) ? measurement : measurement * (unit === 'mm' ? 25.4 : 0.0393700787 )}
-                    {`${convertValues ? (defaultUnit === 'inch' ? '"' : 'mm') : ''}`}
+                    {( unit === defaultUnit || !convertValues ) ? measurement : (measurement * (unit === 'mm' ? 25.4 : 0.0393700787 )).toFixed(4)}
+                    {convertValues && (unit === 'inch' ? '"' : unit)}
 
                 </p>
             </div>

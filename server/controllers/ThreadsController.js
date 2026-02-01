@@ -51,11 +51,9 @@ exports.getThread = async (req,res,next) => {
             let tpiQuery = query.toLowerCase().replace(/\D/g, "");
 
             queryObj.tpi = tpiQuery;
-        } else if (typeof query === 'string') {
+        } else if (typeof query === 'string' && isNaN(query)) {
             //correct any spaces in the query
             let correctedQuery = query.replaceAll('%20',' ').replaceAll('+',' ');
-
-            console.log(correctedQuery);
             
 
             const filteredFamilies = threadFamilies.filter((el) => (
@@ -68,35 +66,39 @@ exports.getThread = async (req,res,next) => {
                 queryObj.$or.push({ 'familyID': el._id });
             });
 
-            console.log(queryObj);
 
+        } else if (typeof query === 'number' || !isNaN(query)) {
 
-        } else if (typeof query === 'number') {
+            let correctedQuery = parseFloat(query);
+
+            const minMultiplier = 0.9;
+            const maxMultiplier = 1.1;
+
             //if the type is 
-            queryObj[$or] = [
+            queryObj.$or = [
                 { 'tpi': query },
                 { $and: 
                     [
-                        { 'outerDiameter': query * 0.9 },
-                        { 'outerDiameter': query * 1.1 },
+                        { 'outerDiameter': { $gt: correctedQuery * minMultiplier} },
+                        { 'outerDiameter': { $lt: correctedQuery * maxMultiplier} },
                     ], 
                 },
                 { $and: 
                     [
-                        { 'innerDiameter': query * 0.9 },
-                        { 'innerDiameter': query * 1.1 },
+                        { 'innerDiameter': { $gt: correctedQuery * minMultiplier } },
+                        { 'innerDiameter': { $lt: correctedQuery * maxMultiplier } },
                     ], 
                 },
                 { $and: 
                     [
-                        { 'clearance': query * 0.9 },
-                        { 'clearance': query * 1.1 },
+                        { 'clearance': { $gt: correctedQuery * minMultiplier } },
+                        { 'clearance': { $lt: correctedQuery * maxMultiplier } },
                     ], 
                 },
                 { $and: 
                     [
-                        { 'tap': query * 0.9 },
-                        { 'tap': query * 1.1 },
+                        { 'tap': { $gt: correctedQuery * minMultiplier } },
+                        { 'tap': { $lt: correctedQuery * maxMultiplier } },
                     ], 
                 },
             ]
@@ -150,11 +152,19 @@ exports.createThread = async (req,res,next) => {
         });
     } else if (family.length == 1) {
         familyLink = family[0]._id;
+    } else if (req.body.defaultUnit) {
+        //Reject request if no default unit provided due to no defaultUnit provided.
+
+        res.status(400).json({
+            status: "fail",
+            message: "Unable to create thread family, no default unit provided.",
+        });
     } else {
         //no thread family exists, one must be created
         let family = await Family.create({
             name: req.body.familyName,
             fullName: req.body.familyFullName,
+            defaultUnit: req.body.defaultUnit,
         })
 
         familyLink = family._id;

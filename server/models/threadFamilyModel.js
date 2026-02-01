@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 /**Any measurements are in mm and will be converted to thousandth of an inch where necessary
  * Any createdBy/updatedBy fields will contain the ID of a user.
+ * 
+ * THIS IS NO LONGER THE CASE DUE TO NON ACCURATE CONVERSIONS, EACH THREAD FAMILY WILL NOW BE STORED WITH IT's DEFAULT UNIT OF EITEHR MM or INCH
  */
 
 const threadsFamilySchema = new mongoose.Schema({
@@ -14,6 +16,11 @@ const threadsFamilySchema = new mongoose.Schema({
     fullName: {
         type: String,
         unique: true,
+    },
+    defaultUnit: {
+        type: String,
+        enum: ['inch','mm'],
+        required: true,
     },
     createdAt: {
         type: Date,

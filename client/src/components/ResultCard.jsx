@@ -16,6 +16,7 @@ export default function ResultCard({thread}) {
                 <MeasurementRow title="TPI" measurement={thread.tpi} convertValues={false} defaultUnit={thread.family.defaultUnit}/>
                 <MeasurementRow title="Tap Drill Diameter" measurement={thread.tap} defaultUnit={thread.family.defaultUnit}/>
                 <MeasurementRow title="Clearance Drill Diameter" measurement={thread.clearance} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow title="Thread angle" measurement={thread.family.angle} defaultUnit={thread.family.defaultUnit}/>
             </div>
         </div>
     )

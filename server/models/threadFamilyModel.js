@@ -17,6 +17,9 @@ const threadsFamilySchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
+    pitch: {
+        type: Number,
+    },
     defaultUnit: {
         type: String,
         enum: ['inch','mm'],

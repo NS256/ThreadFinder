@@ -13,16 +13,29 @@ export default function ResultCard({thread}) {
             <div className='details thread-details details-container card-inner'>
                 <MeasurementRow title="Outer Diameter" measurement={thread.outerDiameter} defaultUnit={thread.family.defaultUnit}/>
                 <MeasurementRow title="Inner Diameter" measurement={thread.innerDiameter} defaultUnit={thread.family.defaultUnit}/>
-                <MeasurementRow title="TPI" measurement={thread.tpi} convertValues={false} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow 
+                    title="TPI" 
+                    measurement={thread.tpi} 
+                    convertValues={false} 
+                    defaultUnit={thread.family.defaultUnit} 
+                    isCustomUnit={true} 
+                    customUnit=''/>
                 <MeasurementRow title="Tap Drill Diameter" measurement={thread.tap} defaultUnit={thread.family.defaultUnit}/>
                 <MeasurementRow title="Clearance Drill Diameter" measurement={thread.clearance} defaultUnit={thread.family.defaultUnit}/>
-                <MeasurementRow title="Thread angle" measurement={thread.family.angle} defaultUnit={thread.family.defaultUnit}/>
+                <MeasurementRow 
+                    title="Thread angle" 
+                    measurement={thread.family.angle} 
+                    convertValues={false} 
+                    defaultUnit={thread.family.defaultUnit} 
+                    isCustomUnit={true} 
+                    customUnit='°'
+                />
             </div>
         </div>
     )
 }
 
-function MeasurementRow({title, measurement, defaultUnit, convertValues=true}) {
+function MeasurementRow({title, measurement, defaultUnit, convertValues=true, isCustomUnit=false, customUnit=''}) {
     //unit is boolean - true for metric, false for imperial
 
     // Commenting out unit to test
@@ -41,12 +54,20 @@ function MeasurementRow({title, measurement, defaultUnit, convertValues=true}) {
             </div>
             <div className='measurement-value-container measurement-container'>
                 <p className='measurement-value'>
-                    {/* Commenting out original flow to test new options */}
-                    {/* {convertValues ? (unit ? measurement : (measurement / 25.4).toFixed(4)) : measurement} */}
 
-                    {/* Trialling displaying default unit symbols instead */}
+                    {/* Only convert if unit of this measurement doesn't match the unit selected by the user */}
                     {( unit === defaultUnit || !convertValues ) ? measurement : (measurement * (unit === 'mm' ? 25.4 : 0.0393700787 )).toFixed(4)}
-                    {convertValues && (unit === 'inch' ? '"' : unit)}
+
+
+                    {(() => {
+                        if (isCustomUnit) return customUnit;
+                        if (unit === 'inch') return '"';
+                        return unit;
+                    })()}
+
+
+                    {/* { isCustomUnit && customUnit }
+                    { (!isCustomUnit && ) } */}
 
                 </p>
             </div>

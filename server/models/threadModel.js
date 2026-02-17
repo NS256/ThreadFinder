@@ -9,7 +9,6 @@ const threadsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
     outerDiameter: Number,
     innerDiameter: Number,
